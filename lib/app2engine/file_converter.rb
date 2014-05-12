@@ -14,20 +14,16 @@ module App2engine
 
     private
 
+    def requires
+      FileParser.new(@path).requires
+    end
+
     def string_with_spaces
       FileParser.new(@path).to_a.map {|line| convert_line(line) }
     end
 
     def convert_line(line)
-      if(line == "\n")
-        "\n"
-      else
-        "  #{line}"
-      end
-    end
-
-    def requires
-      FileParser.new(@path).requires
+      line == "\n" ? "\n" : "  #{line}"
     end
 
     def template
